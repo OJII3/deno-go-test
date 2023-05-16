@@ -1,0 +1,30 @@
+name: Deploy
+on: [push]
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # Needed for auth with Deno Deploy
+      contents: read # Needed to clone the repository
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+
+    steps:
+      - name: Setup TinyGo
+      - uses: acifani/setup-tinygo@v1
+        with:
+          tinygo-version: '0.27.0'
+
+      - name: Build WASM
+        run: "deno task build"
+        shell: bash
+
+      - name: Upload to Deno Deploy
+        uses: denoland/deployctl@v1
+        with:
+          project: "tinygo-test"
+          entrypoint: "./main.ts" # TODO: update entrypoint
