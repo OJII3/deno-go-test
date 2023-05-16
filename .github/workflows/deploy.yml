@@ -19,10 +19,12 @@ jobs:
         with:
           tinygo-version: '0.27.0'
 
+    steps:
       - name: Build WASM
         run: "deno task build"
         shell: bash
 
+    steps:
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
