@@ -1,0 +1,20 @@
+{
+  "imports": {
+    "std/": "https://deno.land/std/"
+  },
+  "tasks": {
+    "setup": "cp $(tinygo env TINYGOROOT)/targets/wasm_exec.js ./src",
+    "build": "tinygo build -o ./.wasm/main.wasm -target wasm ./main.go",
+    "start": "deno run --allow-read index.js"
+  },
+  "lint": {
+    "include": ["src/"],
+    "exclude": ["wasm_exec.js"]
+  },
+  "fmt": {
+    "include": ["src/"],
+    "exclude": ["wasm_exec.js"],
+    "lineWidth": 120,
+    "singleQuote": true
+  }
+}
