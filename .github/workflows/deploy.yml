@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Setup TinyGo
-      - uses: acifani/setup-tinygo@v1
+        uses: acifani/setup-tinygo@v1
         with:
           tinygo-version: '0.27.0'
 
